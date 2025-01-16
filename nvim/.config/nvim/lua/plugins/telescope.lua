@@ -73,7 +73,7 @@ return { -- Fuzzy Finder (files, lsp, etc)
 
       vim.keymap.set('n', '<C-p>', function()
         builtin.oldfiles({ cwd_only = true })
-      end, { desc = '[S]earch Recent Files ("." for repeat)' })
+      end, { desc = 'Search Recent Files (Ctrl + p)' })
 
       -- Slightly advanced example of overriding default behavior and theme
       vim.keymap.set('n', '<C-f>', function()
@@ -97,5 +97,23 @@ return { -- Fuzzy Finder (files, lsp, etc)
       vim.keymap.set('n', '<leader>sn', function()
         builtin.find_files { cwd = vim.fn.stdpath 'config' }
       end, { desc = '[S]earch [N]eovim files' })
+
+      -- Project-wide grep (with visual selection if available)
+      vim.keymap.set({'n', 'v'}, '<C-g>', function()
+        local mode = vim.fn.mode()
+        if mode == 'v' or mode == 'V' then
+          -- Get visual selection
+          local saved_reg = vim.fn.getreg('v')
+          vim.cmd('normal! "vy')
+          local selected_text = vim.fn.getreg('v')
+          vim.fn.setreg('v', saved_reg)
+          builtin.live_grep({
+            default_text = selected_text
+          })
+        else
+          -- No selection, just open live_grep
+          builtin.live_grep()
+        end
+      end, { desc = 'Project-wide grep (with visual selection)' })
     end,
   }
