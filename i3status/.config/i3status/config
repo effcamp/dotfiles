@@ -1,0 +1,77 @@
+general {
+        output_format = "i3bar"
+        colors = true
+        interval = 5
+}
+
+order += "volume master"
+order += "path_exists AWS"
+order += "path_exists LR"
+# order += "ethernet enp5s0"
+# order += "wireless wlan0"
+order += "cpu_usage"
+order += "cpu_temperature 0"
+order += "cpu_temperature 1"
+order += "memory"
+order += "disk /"
+order += "tztime local"
+
+volume master {
+        format = "♪: %volume"
+        format_muted = "♪: muted (%volume)"
+        device = "default"
+        mixer = "Master"
+        mixer_idx = 0
+}
+
+wireless wlan0 {
+        format_up = "W: (%quality at %essid, %bitrate) %ip"
+        format_down = "W: down"
+}
+
+ethernet enp5s0 {
+        format_up = "E: %speed"
+        format_down = "E: down"
+}
+
+path_exists AWS {
+        path = "/proc/sys/net/ipv4/conf/tun0"
+}
+
+path_exists LR {
+        path = "/proc/sys/net/ipv4/conf/tun1"
+}
+
+tztime local {
+        format = "%Y-%m-%d %H:%M:%S"
+}
+
+cpu_usage {
+        format = "%usage"
+}
+
+cpu_temperature 0 {
+        format = "CPU: %degrees °C"
+	max_threshold = 80
+        path = "/sys/class/hwmon/hwmon1/temp1_input"
+}
+
+cpu_temperature 1 {
+        format = "W: %degrees °C"
+	max_threshold = 40
+# /sys/class/hwmon/hwmon2/subsystem/hwmon1/temp2_input
+#        path = "/sys/class/hwmon/hwmon2/temp2_input"
+	path = "/sys/class/hwmon/hwmon3/temp2_input"
+}
+
+memory {
+        format = "MEM: %percentage_used"
+}
+
+disk "/" {
+        format = "DISK: %free"
+}
+
+read_file uptime {
+        path = "/proc/uptime"
+}

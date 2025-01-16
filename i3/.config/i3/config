@@ -1,0 +1,16 @@
+include ~/.config/i3/startup.conf
+include ~/.config/i3/theme.conf
+include ~/.config/i3/keybinds.conf
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+
+# move tiling windows via drag & drop by left-clicking into the title bar,
+# or left-clicking anywhere into the window while holding the floating modifier.
+focus_follows_mouse no
+
+# Application specific settings
+for_window [floating] move position center
+for_window [class="1Password"] floating enable
+# assign [class="1Password"] 3
+assign [class="obsidian"] 1
+assign [class="Slack"] 2
