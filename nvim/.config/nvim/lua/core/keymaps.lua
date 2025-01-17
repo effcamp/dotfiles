@@ -63,3 +63,11 @@ keymap.set('v', 'y', function()
         return 'y`]'  -- Jump to end of yanked text
     end
 end, { noremap = true, expr = true })
+
+vim.keymap.set('n', '<C-f>', '<cmd>lua print("disabled")<CR>', { noremap = true })
+vim.keymap.set('v', '<C-f>', '<cmd>lua print("disabled")<CR>', { noremap = true })
+vim.keymap.set('i', '<C-f>', '<cmd>lua print("disabled")<CR>', { noremap = true })
+
+vim.keymap.set('n', '<C-b>', '<cmd>lua print("disabled")<CR>', { noremap = true })
+vim.keymap.set('v', '<C-b>', '<cmd>lua print("disabled")<CR>', { noremap = true })
+vim.keymap.set('i', '<C-b>', '<cmd>lua print("disabled")<CR>', { noremap = true })
