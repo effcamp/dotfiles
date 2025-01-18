@@ -3,12 +3,13 @@ vim.g.mapleader = " "
 local keymap = vim.keymap
 
 keymap.set("n", "<leader>w", ":wall<CR>", { desc = "Save All with leader w"})
-keymap.set("n", "<C-q>", ":wqa<CR>", { desc = "Save all and quit vim with Ctrl+Q"})
+keymap.set("n", "<C-q><C-q>", ":wqa<CR>", { desc = "Save all and quit vim with Ctrl+Q"})
 -- keymap.set("n", "<leader>e", ":Ex<CR>", { desc = "Open Explorer"})
 keymap.set("n", "K", "i<CR><ESC>==", { desc = "Split lines and indent"})
-
+vim.keymap.set("n", "<leader>fp", ":%s/\\s*\\r\\|\\s\\+$//g<CR>", { desc = "Format pasted text from windows" })
 keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>", { desc = "Clear highlight when ESC after search" })
 
+vim.keymap.set("v", "p", '"_dP', { desc = "Paste without yanking replaced text" })
 keymap.set("n", "<PageUp>", "<c-u>", { desc = "Half page up", noremap = true, })
 keymap.set("n", "<PageDown>", "<c-d>", { desc = "Half page down", noremap = true, })
 -- Page up/down
