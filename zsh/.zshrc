@@ -1,16 +1,5 @@
-path+=('/.local/bin')
+path+=("$HOME/.local/bin")
 export PATH
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-
-if [[ -f "/opt/homebrew/bin/brew" ]] then
-  # If you're using macOS, you'll want this enabled
-  eval "$(/opt/homebrew/bin/brew shellenv)"
-fi
 
 # Set the directory we want to store zinit and plugins
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
@@ -24,8 +13,6 @@ fi
 # Source/Load zinit
 source "${ZINIT_HOME}/zinit.zsh"
 
-# Add in Powerlevel10k
-zinit ice depth=1; zinit light romkatv/powerlevel10k
 
 # Add in zsh plugins
 zinit light zsh-users/zsh-syntax-highlighting
@@ -48,9 +35,6 @@ autoload -Uz compinit && compinit
 
 zinit cdreplay -q
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
 # Keybindings
 bindkey -e
 bindkey '^[[1;5A' history-search-backward
@@ -60,7 +44,11 @@ bindkey "^[[1;5C" forward-word
 bindkey "^[[1;5D" backward-word
 bindkey "^@"  autosuggest-accept
 bindkey "^[f"  autosuggest-accept
-
+# Create the widget
+#
+# Simple key binding to run the script
+bindkey -s '^f' 'tmux-sessionizer\n'
+#
 # History
 HISTSIZE=5000
 HISTFILE=~/.zsh_history
@@ -113,8 +101,9 @@ function y() {
 }
 
 # bun completions
-[ -s "/home/fredcampos/.bun/_bun" ] && source "/home/fredcampos/.bun/_bun"
+[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
 
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
+eval "$(starship init zsh)"
