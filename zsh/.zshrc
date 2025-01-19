@@ -1,4 +1,5 @@
 path+=("$HOME/.local/bin")
+path+=("$HOME/.local/scripts")
 export PATH
 
 # Set the directory we want to store zinit and plugins
