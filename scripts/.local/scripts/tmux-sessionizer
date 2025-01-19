@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-set -x  # Enable debug mode to see what's being executed
 
 if [[ $# -eq 1 ]]; then
     selected=$1
