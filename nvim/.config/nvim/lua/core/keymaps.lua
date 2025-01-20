@@ -3,11 +3,13 @@ vim.g.mapleader = " "
 local keymap = vim.keymap
 
 keymap.set("n", "<leader>w", ":wall<CR>", { desc = "Save All with leader w"})
+keymap.set("n", "<C-q><C-q>", ":wqa<CR>", { desc = "Save all and quit vim with Ctrl+Q"})
 -- keymap.set("n", "<leader>e", ":Ex<CR>", { desc = "Open Explorer"})
 keymap.set("n", "K", "i<CR><ESC>==", { desc = "Split lines and indent"})
-
+vim.keymap.set({"n", "v"}, "<leader>fp", "p:%s/\\s*\\r\\|\\s\\+$//g<CR>", { desc = "Format pasted text from windows" })
 keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>", { desc = "Clear highlight when ESC after search" })
 
+vim.keymap.set("v", "p", '"_dP', { desc = "Paste without yanking replaced text" })
 keymap.set("n", "<PageUp>", "<c-u>", { desc = "Half page up", noremap = true, })
 keymap.set("n", "<PageDown>", "<c-d>", { desc = "Half page down", noremap = true, })
 -- Page up/down
@@ -71,3 +73,47 @@ vim.keymap.set('i', '<C-f>', '<cmd>lua print("disabled")<CR>', { noremap = true 
 vim.keymap.set('n', '<C-b>', '<cmd>lua print("disabled")<CR>', { noremap = true })
 vim.keymap.set('v', '<C-b>', '<cmd>lua print("disabled")<CR>', { noremap = true })
 vim.keymap.set('i', '<C-b>', '<cmd>lua print("disabled")<CR>', { noremap = true })
+
+-- Ctrl + Alt combinations for horizontal resize
+vim.keymap.set('n', '<C-M-Left>', ':vertical resize -2<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<C-M-Right>', ':vertical resize +2<CR>', { noremap = true, silent = true })
+
+-- Up/Down for vertical resize
+vim.keymap.set('n', '<C-M-Up>', ':resize +2<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<C-M-Down>', ':resize -2<CR>', { noremap = true, silent = true })
+
+-- Store original window sizes
+local original_sizes = {}
+local is_maximized = false
+
+local function toggle_maximize_split()
+    if not is_maximized then
+        -- Store current window sizes before maximizing
+        original_sizes = {}
+        for _, win in pairs(vim.api.nvim_list_wins()) do
+            original_sizes[win] = {
+                width = vim.api.nvim_win_get_width(win),
+                height = vim.api.nvim_win_get_height(win)
+            }
+        end
+
+        -- Maximize current window
+        vim.cmd('resize')
+        vim.cmd('vertical resize')
+        is_maximized = true
+    else
+        -- Restore original sizes
+        for win, size in pairs(original_sizes) do
+            if vim.api.nvim_win_is_valid(win) then
+                vim.api.nvim_win_set_width(win, size.width)
+                vim.api.nvim_win_set_height(win, size.height)
+            end
+        end
+        is_maximized = false
+        -- Clear stored sizes
+        original_sizes = {}
+    end
+end
+
+-- Map Ctrl+Alt+m to toggle maximize
+vim.keymap.set('n', '<C-M-m>', toggle_maximize_split, { noremap = true, silent = true })

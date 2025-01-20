@@ -47,7 +47,15 @@ return { -- Fuzzy Finder (files, lsp, etc)
             },
           },
         },
-        -- pickers = {}
+        pickers = {
+          find_files = {
+            hidden = true,
+            file_ignore_patterns = {
+              "node_modules/.*",
+              ".git/.*",
+            },
+          },
+        },
         extensions = {
           ['ui-select'] = {
             require('telescope.themes').get_dropdown(),
@@ -72,8 +80,8 @@ return { -- Fuzzy Finder (files, lsp, etc)
       vim.keymap.set('n', '<leader>sd', builtin.diagnostics, { desc = '[S]earch [D]iagnostics' })
       vim.keymap.set('n', '<leader>sr', builtin.resume, { desc = '[S]earch [R]esume' })
       vim.keymap.set('n', '<leader><leader>', builtin.buffers, { desc = '[ ] Find existing buffers' })
-      vim.keymap.set('n', '<C-e>', builtin.buffers, { desc = '[ ] Find existing buffers' })
-
+      vim.keymap.set("n", "<leader>sy", "<cmd>Telescope yank_history<cr>", { desc = "Yank History" })
+      vim.keymap.set('n', '<leader>sp', '<cmd>Telescope registers<cr>', { desc = 'Show registers' })
       vim.keymap.set('n', '<C-p>', function()
         builtin.oldfiles({ cwd_only = true })
       end, { desc = 'Search Recent Files (Ctrl + p)' })

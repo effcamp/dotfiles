@@ -31,7 +31,11 @@ return { -- Collection of various small independent plugins/modules
         return '%2l:%-2v'
       end
 
-      -- ... and there is more!
-      --  Check out: https://github.com/echasnovski/mini.nvim
+      -- Set the statusline content as winbar
+      vim.opt.winbar = "%{%v:lua.MiniStatusline.active()%}"
+      vim.opt.ruler = false
+      vim.opt.showmode = false
+      vim.opt.cmdheight = 0
+      vim.opt.laststatus = 0
     end,
   }
