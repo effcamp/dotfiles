@@ -9,7 +9,7 @@ vim.api.nvim_create_autocmd("TextYankPost", {
   end,
 })
 
-vim.o.sessionoptions="buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
+vim.o.sessionoptions="blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
 local function close_window_or_buffer()
     local buffer_count = #vim.fn.getbufinfo({buflisted = 1})
 
