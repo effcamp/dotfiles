@@ -91,6 +91,7 @@ eval "$(pyenv init -)"
 
 export VISUAL=nvim
 export EDITOR=nvim
+export GIT_EDITOR=nvim
 
 function y() {
 	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
