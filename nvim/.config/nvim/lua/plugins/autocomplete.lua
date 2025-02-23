@@ -50,6 +50,7 @@ return { -- Autocompletion
             ['<C-f>'] = cmp.mapping.scroll_docs(4),
 
             ['<M-f>'] = cmp.mapping.confirm { select = true },
+            ['<CR>'] = cmp.mapping.confirm { select = true },
 
             ['<C-Space>'] = cmp.mapping.complete {},
 
