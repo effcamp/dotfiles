@@ -1,3 +1,4 @@
+path+=("/usr/local/go/bin")
 path+=("$HOME/.local/bin")
 path+=("$HOME/.local/scripts")
 export PATH
@@ -71,9 +72,10 @@ zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
 zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 
 # Aliases
-alias ls='ls --color'
+alias ls='ls'
 alias ll='ls -la --color'
 alias vim='nvim'
+alias v='nvim'
 alias c='clear'
 alias lg='lazygit'
 alias ld='lazydocker'
