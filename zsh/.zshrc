@@ -85,10 +85,6 @@ export NVM_DIR=~/.nvm
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 eval "$(zoxide init --cmd cd zsh)"
 
-export PYENV_ROOT="$HOME/.pyenv"
-[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
-
 export VISUAL=nvim
 export EDITOR=nvim
 export GIT_EDITOR=nvim
@@ -109,3 +105,5 @@ function y() {
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 eval "$(starship init zsh)"
+eval "$(uv generate-shell-completion zsh)"
+eval "$(uvx --generate-shell-completion zsh)"

@@ -42,6 +42,8 @@ return {
           -- map('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
           map('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
           map('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction', { 'n', 'x' })
+          map('<C-k>', vim.lsp.buf.hover, 'LSP Hover Documentation')
+          map('<C-j>', vim.lsp.buf.signature_help, 'Signature Help')
           map('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
 
           -- Highlight references of the word under cursor
@@ -130,6 +132,18 @@ return {
               }
             }
           }
+        },
+        pylsp = {
+          settings = {
+            pylsp = {
+              plugins = {
+                pylint = { enabled = false },
+                pyflakes = { enabled = false },
+                pycodestyle = { enabled = false },
+                mccabe = { enabled = false },
+              },
+            },
+          },
         },
         emmet_ls = {},
         lua_ls = {
