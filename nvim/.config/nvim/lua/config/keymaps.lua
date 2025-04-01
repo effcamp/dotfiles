@@ -113,3 +113,6 @@ end
 
 -- Map Ctrl+Alt+m to toggle maximize
 vim.keymap.set("n", "<C-M-m>", toggle_maximize_split, { noremap = true, silent = true })
+
+local map = LazyVim.safe_keymap_set
+map({ "i", "n", "v" }, "<C-F>", "<Cmd>lua print('disabled')<R>", false)
