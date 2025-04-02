@@ -4,3 +4,9 @@ git:
   paging:
     colorArg: always
     pager: delta --dark --paging=never
+customCommands:
+  - key: "U"
+    context: "localBranches"
+    command: "git fetch origin {{.SelectedLocalBranch.Name}}:{{.SelectedLocalBranch.Name}}"
+    subprocess: true
+    description: "Update highlighted branch from origin"
