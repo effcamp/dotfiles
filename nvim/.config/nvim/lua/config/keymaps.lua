@@ -8,6 +8,17 @@ vim.keymap.set("n", "K", "i<CR><ESC>==", { desc = "Split lines and indent" })
 -- vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>", { desc = "Clear highlight when ESC after search" })
 
 vim.keymap.set("v", "p", '"_dP', { desc = "Paste without yanking replaced text" })
+
+-- Horizontal scrolling
+vim.keymap.set("n", "<S-PageUp>", "zH", { desc = "Half screen left" })
+vim.keymap.set("n", "<S-PageDown>", "zL", { desc = "Half screen right" })
+-- Horizontal scrolling
+vim.keymap.set("n", "<S-PageUp>", "zH", { desc = "Half screen left" })
+vim.keymap.set("n", "<S-PageDown>", "zL", { desc = "Half screen right" })
+-- Horizontal scrolling
+vim.keymap.set("i", "<S-PageUp>", "<Cmd>normal! zH<CR>", { desc = "Exit insert and scroll half screen left" })
+vim.keymap.set("i", "<S-PageDown>", "<Cmd>normal! zL<CR>", { desc = "Exit insert and scroll half screen right" })
+
 vim.keymap.set("n", "<PageUp>", "<c-u>", { desc = "Half page up" })
 vim.keymap.set("n", "<PageDown>", "<c-d>", { desc = "Half page down" })
 -- Page up/down
