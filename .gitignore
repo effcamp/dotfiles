@@ -1,2 +1,8 @@
 .aider*
 .env
+
+# Pi - machine-local / sensitive files
+pi/.pi/agent/auth.json
+pi/.pi/agent/run-history.jsonl
+pi/.pi/agent/sessions/
+pi/.pi/agent/bin/

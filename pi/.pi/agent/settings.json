@@ -1,0 +1,14 @@
+{
+  "lastChangelogVersion": "0.72.1",
+  "defaultProvider": "google",
+  "defaultModel": "gemini-3.1-flash-lite-preview",
+  "defaultThinkingLevel": "medium",
+  "packages": [
+    "npm:pi-subagents"
+  ],
+  "hideThinkingBlock": true,
+  "enabledModels": [
+    "gemini-3.1-flash-lite-preview",
+    "gemini-3.1-pro-preview"
+  ]
+}
